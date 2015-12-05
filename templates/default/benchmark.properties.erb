@@ -1,0 +1,13 @@
+consumeKafkaHost=<%= @kafka_ip %>:9092
+consumeZkHost=<%= @zk_ip %>:2181
+produceKafkaHost=<%= @kafka_ip %>:9092
+tweetsTopic=tweets
+abTopic=ab
+numABRecords=<%= node[:streamingbenchmarks][:numABRecords] %>
+numABGroups=<%= node[:streamingbenchmarks][:numABGroups] %>
+abFlinkOutTopic=flinkabout
+abSparkOutTopic=sparkabout
+tweetsFile=<%= node[:streamingbenchmarks][:home] %>/Test/data/tweets.txt
+flinkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
+sparkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
+numTweets=<%= node[:streamingbenchmarks][:numTweets] %>

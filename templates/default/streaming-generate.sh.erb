@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd <%= node[:streamingbenchmarks][:home] %>
+java -jar bin/intel-bench-streaming.jar hu.sztaki.mbalassi.intel.consulting.streaming.KafkaABGenerator conf/benchmark.properties
+
+java -jar bin/intel-bench-streaming.jar hu.sztaki.mbalassi.intel.consulting.streaming.KafkaTweetGenerator conf/benchmark.properties

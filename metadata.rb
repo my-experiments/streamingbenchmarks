@@ -35,4 +35,18 @@ attribute "streamingbenchmarks/user",
 :description => "user parameter value",
 :type => "string"
 
+attribute "streamingbenchmarks/dir",
+:description => "Installation directory",
+:type => "string"
 
+attribute "streamingbenchmarks/numABRecords",
+:description => "Number of AB Records (streaming experiment)",
+:type => "string"
+
+attribute "streamingbenchmarks/numABGroups",
+:description => "Number of AB Groups (streaming experiment)",
+:type => "string"
+
+attribute "streamingbenchmarks/numTweets",
+:description => "Number of Tweets (streaming experiment)",
+:type => "string"

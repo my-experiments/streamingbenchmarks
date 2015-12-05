@@ -8,32 +8,104 @@ driver:
     natdnshostresolver1: "on"
     natdnsproxy1: "on"
     nictype1: "virtio"
+  network:
+  #- ["forwarded_port", {guest: 8080, host: 19991}]
+  #- ["forwarded_port", {guest: 9191, host: 19192}]
+  #- ["forwarded_port", {guest: 8888, host: 18888}]
+  #- ["forwarded_port", {guest: 8088, host: 20088}]
+  #- ["forwarded_port", {guest: 8089, host: 18089}]
 
 provisioner:
   name: chef_solo
 
 platforms:
-  - name: centos-6.5
   - name: ubuntu-14.04
-
+    run_list:
+     - recipe[apt]
 suites: 
   - name: default
     run_list:
-      - recipe[kagent::install]
+      - recipe[kzookeeper::install]
+      - recipe[kkafka::install]
+      - recipe[hadoop::install]
+      - recipe[flink::install]
+      - recipe[spark::install]
       - recipe[streamingbenchmarks::install]
-      - recipe[streamingbenchmarks::experiment]
-
+      - recipe[kzookeeper::default]
+      - recipe[kkafka::default]
+      - recipe[hadoop::nn]
+      - recipe[hadoop::dn]
+      - recipe[hadoop::rm]
+      - recipe[hadoop::nm]
+      - recipe[hadoop::jhs]
+      - recipe[flink::jobmanager]
+      - recipe[flink::jobmanager-hadoop]
+      - recipe[flink::taskmanager]
+      - recipe[flink::wordcount]
+      - recipe[spark::master]
+      - recipe[spark::worker]
+      - recipe[kkafka::monitor]
+      - recipe[streamingbenchmarks]
+      - recipe[streamingbenchmarks::consume]
     attributes:
+         java:
+            jdk_version: 8
+            install_flavor: oracle
+            oracle:
+               accept_oracle_download_terms: true
+         kkafka:
+            default:
+                private_ips: ["10.0.2.15"]
+            private_ips: ["10.0.2.15"]
+         kzookeeper:
+            default:
+                private_ips: ["10.0.2.15"]
+            private_ips: ["10.0.2.15"]
+         kagent:
+            private_ips: ["10.0.2.15"]
+         private_ips: ["10.0.2.15"]
+         public_ips: ["10.0.2.15"]
+         vagrant: "enabled"
+         kafka:
+            ulimit_file: 128000
+            broker:
+              log_dirs: ['/mnt/kafka-logs-1', '/mnt/kafka-logs-2']
+              zookeeper_connect: ['localhost:2181']
+              zookeeper_connection_timeout_ms: 15_000
+         flink:
+            mode: streaming
+            jobmanager:
+               private_ips: ["10.0.2.15"]
+               web_port: 8089
+            taskmanager:
+               private_ips: ["10.0.2.15"]
+         spark:
+            master:
+               private_ips: ["10.0.2.15"]
+            worker:
+               private_ips: ["10.0.2.15"]
+         hdfs:
+            user: hdfs
+         hadoop:
+            version: 2.7.1
+            group: hadoop
+            yarn:
+               user: yarn
+            nn:
+               private_ips: ["10.0.2.15"]
+            dn:
+               private_ips: ["10.0.2.15"]
+            rm:
+               private_ips: ["10.0.2.15"]
+               public_ips: ["10.0.2.15"]
+            nm:
+               private_ips: ["10.0.2.15"]
+            jhs:
+               private_ips: ["10.0.2.15"]
          streamingbenchmarks:
             experiment:
                 private_ips: ["10.0.2.15"]
                 public_ips: ["10.0.2.15"]
             private_ips: ["10.0.2.15"]
             public_ips: ["10.0.2.15"]
-         kagent:
-            private_ips: ["10.0.2.15"]
-            public_ips: ["10.0.2.15"]
-         private_ips: ["10.0.2.15"]
-         public_ips: ["10.0.2.15"]
-         vagrant: "enabled"
 

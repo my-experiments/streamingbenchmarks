@@ -21,6 +21,14 @@ private_ip = my_private_ip()
 public_ip = my_public_ip()
 
 
+package "git" do 
+  action :install
+end
+
+package "maven" do 
+  action :install
+end
+
 
 # Pre-Experiment Code
 
@@ -36,41 +44,17 @@ directory "#{node[:streamingbenchmarks][:home]}" do
   not_if { File.directory?("#{node[:streamingbenchmarks][:home]}") }
 end
 
-directory "#{node[:streamingbenchmarks][:home]}/Test" do
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode "755"
-  action :create
-  not_if { File.directory?("#{node[:streamingbenchmarks][:home]}/Test") }
+
+for d in %w[ Test Test/data conf src bin ] do
+  directory "#{node[:streamingbenchmarks][:home]}/#{d}" do
+    owner node[:streamingbenchmarks][:user]
+    group node[:streamingbenchmarks][:group]
+    mode "755"
+    action :create
+    not_if { File.directory?("#{node[:streamingbenchmarks][:home]}/#{d}") }
+  end
 end
-
-
-directory "#{node[:streamingbenchmarks][:home]}/Test/data" do
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode "755"
-  action :create
-  not_if { File.directory?("#{node[:streamingbenchmarks][:home]}/Test/data") }
-end
-
-directory "#{node[:streamingbenchmarks][:home]}/conf" do
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode "755"
-  action :create
-  recursive true
-  not_if { File.directory?("#{node[:streamingbenchmarks][:home]}/conf") }
-end
-
-directory "#{node[:streamingbenchmarks][:home]}/bin" do
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode "755"
-  action :create
-  recursive true
-  not_if { File.directory?("#{node[:streamingbenchmarks][:home]}/bin") }
-end
-
+  
 remote_file "#{node[:streamingbenchmarks][:home]}/Test/data/tweets.txt"  do
   source "http://snurran.sics.se/hops/tweets.txt"
   checksum "4db5026349dd57febf4a68d56b7f1a2769df4eb6bd6b44a8155fe56f551903f7"
@@ -79,6 +63,7 @@ remote_file "#{node[:streamingbenchmarks][:home]}/Test/data/tweets.txt"  do
 end
 
 bench="intel-benchmarks.tgz"
+bench_src="intel-benchmarks-src.tgz"
 
 remote_file "/tmp/#{bench}"  do
   source "http://snurran.sics.se/hops/#{bench}"
@@ -86,13 +71,22 @@ remote_file "/tmp/#{bench}"  do
   action :create
 end
 
+remote_file "/tmp/#{bench_src}"  do
+  source "http://snurran.sics.se/hops/#{bench_src}"
+  mode 0755
+  action :create
+end
+
 
 bash "unpack_intel_benchmarks" do
-  user node['streamingbenchmarks']['user']
-  group node['streamingbenchmarks']['group']
+  user "root"
     code <<-EOF
+set -e
 cd /tmp
-tar -xzf #{bench} -C #{node[:streamingbenchmarks][:home]}/bin
+tar -xf #{bench_src} -C #{node[:streamingbenchmarks][:home]}/src   
+  
+    chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/src   
+    chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/bin
 touch #{node[:streamingbenchmarks][:home]}/.benchmarks_downloaded
 EOF
   not_if { ::File.exists?( "#{node[:streamingbenchmarks][:home]}/.benchmarks_downloaded" ) }

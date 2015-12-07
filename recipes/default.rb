@@ -13,9 +13,10 @@
 zk_ip = private_recipe_ip("kzookeeper", "default")
 kafka_ip = private_recipe_ip("kkafka", "default")
 
-# streamingbenchmarks "tweets" do
-#   action :generate_streaming
-# end
+streamingbenchmarks "tweets" do
+  action :build
+#  action :generate_streaming
+end
 
 template "#{node[:streamingbenchmarks][:home]}/bin/streaming-generate.sh" do
   source "streaming-generate.sh.erb"

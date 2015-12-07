@@ -1,3 +1,20 @@
+action :build do
+
+Chef::Log.info "Building benchmark"
+
+  bash "building_intel_benchmarks" do
+    user node['streamingbenchmarks']['user']
+    group node['streamingbenchmarks']['group']
+     code <<-EOF 
+      cd #{node[:streamingbenchmarks][:home]}/src
+      mvn clean package
+  EOF
+  end
+
+
+end
+
+
 action :generate_streaming do
 
 Chef::Log.info "Generating data for streaming benchmark"

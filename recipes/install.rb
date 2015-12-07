@@ -93,10 +93,4 @@ EOF
 end
 
 
-template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
-  source "benchmark.properties.erb"
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode 0755
-end
 

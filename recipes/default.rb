@@ -13,6 +13,18 @@
 zk_ip = private_recipe_ip("kzookeeper", "default")
 kafka_ip = private_recipe_ip("kkafka", "default")
 
+
+template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
+  source "benchmark.properties.erb"
+  owner node[:streamingbenchmarks][:user]
+  group node[:streamingbenchmarks][:group]
+  mode 0755
+  variables({ :zk_ip => zk_ip,
+              :kafkak_ip => kafka_ip
+  })
+end
+
+
 streamingbenchmarks "tweets" do
   action :build
 #  action :generate_streaming

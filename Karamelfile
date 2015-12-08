@@ -1,8 +1,5 @@
 dependencies:
   - recipe: streamingbenchmarks::install
-    global:
-      - spark::install
-      - flink::install
   - recipe: streamingbenchmarks::default
     global:
       - flink::taskmanager

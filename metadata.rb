@@ -10,7 +10,7 @@ recipe            "streamingbenchmarks::default",  "configFile=; Experiment name
 
 
 depends "kagent"
-
+depends "java"
 
 
 %w{ ubuntu debian rhel centos }.each do |os|

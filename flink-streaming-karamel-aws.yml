@@ -29,6 +29,7 @@ attrs:
        "8":
         "x86_64":
            url: "http://snurran.sics.se/hops/jdk-8u65-linux-x64.tar.gz"
+           checksum: "196880a42c45ec9ab2f00868d69619c0"
   flink:
     mode: streaming
     jobmanager:

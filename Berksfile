@@ -5,12 +5,12 @@ Encoding.default_external = "UTF-8"
 source 'https://supermarket.chef.io'
 cookbook 'kagent', github: 'karamelchef/kagent-chef', branch: 'master'
 metadata
-cookbook 'kkafka', github: 'hopshadoop/kkafka', branch: 'master'
+cookbook 'kkafka', github: 'hopshadoop/kkafka', branch: 'java8'
 cookbook 'kafka', github: 'mthssdrbrg/kafka-cookbook', branch: 'master'
-cookbook 'kzookeeper', github: 'hopshadoop/kzookeeper', branch: 'master'
+cookbook 'kzookeeper', github: 'hopshadoop/kzookeeper', branch: 'java8'
 cookbook 'zookeeper', github: 'biobankcloud/chef-zookeeper', branch: 'master'
-cookbook 'flink', github: 'hopshadoop/flink-chef', branch: 'master'
-cookbook 'spark', github: 'hopshadoop/spark-chef', branch: 'master'
+cookbook 'flink', github: 'hopshadoop/flink-chef', branch: 'java8'
+cookbook 'spark', github: 'hopshadoop/spark-chef', branch: 'java8'
 cookbook 'hadoop', github: 'hopshadoop/apache-hadoop-chef', branch: 'master'
 
 cookbook 'java', github: 'jimdowling/java'

@@ -32,7 +32,7 @@ groups:
         - spark::master
         - streamingbenchmarks
   workers:
-    size: 3
+    size: 2
     recipes: 
         - hadoop::dn
         - flink::taskmanager

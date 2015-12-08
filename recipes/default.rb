@@ -20,7 +20,7 @@ template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   group node[:streamingbenchmarks][:group]
   mode 0755
   variables({ :zk_ip => zk_ip,
-              :kafkak_ip => kafka_ip
+              :kafka_ip => kafka_ip
   })
 end
 

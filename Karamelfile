@@ -1,11 +1,9 @@
 dependencies:
   - recipe: streamingbenchmarks::install
-  - recipe: streamingbenchmarks::experiment
-    local:
-      - streamingbenchmarks::install
+  - recipe: streamingbenchmarks::default
     global:
       - flink::taskmanager
       - spark::master
       - kkafka::default
-
+      - kkafka::monitor
 

@@ -27,7 +27,6 @@ end
 
 streamingbenchmarks "tweets" do
   action :build
-#  action :generate_streaming
 end
 
 template "#{node[:streamingbenchmarks][:home]}/bin/streaming-generate.sh" do

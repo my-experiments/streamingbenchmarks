@@ -1,6 +1,6 @@
 name: FlinkStreamingZookeeperKafka
 ec2:
-    type: m3.medium
+    type: m3.large
     region: eu-west-1
     
 cookbooks:                                                                      
@@ -14,6 +14,8 @@ cookbooks:
     github: "hopshadoop/kzookeeper"
   kkafka: 
     github: "hopshadoop/kkafka"
+  streamingbenchmarks:
+    github: "jimdowling/streamingbenchmarks"
 
 attrs:
   flink:
@@ -25,6 +27,8 @@ groups:
         - hadoop::nn
         - flink::jobmanager
         - spark::master
+        - streamingbenchmarks
+        - kkafka::monitor
   workers:
     size: 3
     recipes: 

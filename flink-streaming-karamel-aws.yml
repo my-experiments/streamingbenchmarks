@@ -18,6 +18,8 @@ cookbooks:
     github: "jimdowling/streamingbenchmarks"
 
 attrs:
+  java:
+    jdk_version: 8
   flink:
     mode: streaming
     jobmanager:

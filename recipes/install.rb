@@ -76,9 +76,9 @@ bash "unpack_intel_benchmarks" do
     code <<-EOF
 set -e
 cd /tmp
-tar -xf #{bench_src} -C #{node[:streamingbenchmarks][:home]}/src   
-  
-    chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/src   
+#    tar -xf #{bench_src} -C #{node[:streamingbenchmarks][:home]}/src   
+     tar -xf #{bench} -C #{node[:streamingbenchmarks][:home]}/bin 
+#    chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/src   
     chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/bin
 touch #{node[:streamingbenchmarks][:home]}/.benchmarks_downloaded
 EOF

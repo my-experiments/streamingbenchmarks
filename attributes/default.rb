@@ -7,6 +7,6 @@ default[:streamingbenchmarks][:user] = "flink"
 
 default[:streamingbenchmarks][:dir] = "/srv" 
 default[:streamingbenchmarks][:home] = node[:streamingbenchmarks][:dir] + "/intel_streamingbench" 
-default[:streamingbenchmarks][:numABRecords] = "100" 
+default[:streamingbenchmarks][:numABRecords] = "10000000" 
 default[:streamingbenchmarks][:numABGroups] = "5"
 default[:streamingbenchmarks][:numTweets] = "25000000"

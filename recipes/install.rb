@@ -10,13 +10,6 @@ user node[:streamingbenchmarks][:user] do
   not_if "getent passwd #{node[:streamingbenchmarks]['user']}"
 end
 
-group node[:streamingbenchmarks][:group] do
-  action :modify
-  members ["#{node[:streamingbenchmarks][:user]}"]
-  append true
-end
-
-
 private_ip = my_private_ip()
 public_ip = my_public_ip()
 

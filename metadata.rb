@@ -31,14 +31,6 @@ attribute "streamingbenchmarks/numStores",
 :description => "numStores parameter value",
 :type => "string"
 
-attribute "streamingbenchmarks/user",
-:description => "user parameter value",
-:type => "string"
-
-attribute "streamingbenchmarks/dir",
-:description => "Installation directory",
-:type => "string"
-
 attribute "streamingbenchmarks/numABRecords",
 :description => "Number of AB Records (streaming experiment)",
 :type => "string"

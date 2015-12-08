@@ -20,6 +20,9 @@ cookbooks:
 attrs:
   flink:
     mode: streaming
+    jobmanager:
+       heap_mbs: '1024'
+
 groups:
   mgr:
     size: 1
@@ -28,7 +31,6 @@ groups:
         - flink::jobmanager
         - spark::master
         - streamingbenchmarks
-        - kkafka::monitor
   workers:
     size: 3
     recipes: 
@@ -37,3 +39,4 @@ groups:
         - spark::worker
         - kzookeeper
         - kkafka
+        - kkafka::monitor

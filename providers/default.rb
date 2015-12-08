@@ -8,6 +8,9 @@ Chef::Log.info "Building benchmark"
      code <<-EOF 
       cd #{node[:streamingbenchmarks][:home]}/src
       mvn clean package
+      cp intel-consulting-java/target/intel-consulting-java-0.1-SNAPSHOT-allinone.jar ../bin/intel-bench-streaming.jar
+      cp intel-consulting-scala/target/intel-consulting-scala-0.1-SNAPSHOT-allinone.jar ../bin/intel-bench-batch.jar
+#      update-alternatives --set java
   EOF
   end
 

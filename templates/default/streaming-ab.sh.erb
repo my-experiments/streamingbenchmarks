@@ -3,3 +3,6 @@
 cd <%= node[:streamingbenchmarks][:home] %>
 
 /srv/flink/bin/flink run -c hu.sztaki.mbalassi.intel.consulting.streaming.FlinkABTest bin/intel-bench-streaming.jar conf/benchmark.properties
+
+#/srv/flink/bin/flink run -c hu.sztaki.mbalassi.intel.consulting.streaming.FlinkABTest src/intel-consulting-java/target/intel-consulting-java-0.1-SNAPSHOT-allinone.jar conf/benchmark.properties
+

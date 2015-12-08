@@ -30,7 +30,7 @@ groups:
         - hadoop::nn
         - flink::jobmanager
         - spark::master
-        - streamingbenchmarks
+        - streamingbenchmarks::default
   workers:
     size: 2
     recipes: 

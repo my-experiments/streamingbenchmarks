@@ -10,8 +10,14 @@ Chef::Log.info "Building benchmark"
       mvn clean package
       cp intel-consulting-java/target/intel-consulting-java-0.1-SNAPSHOT-allinone.jar ../bin/intel-bench-streaming.jar
       cp intel-consulting-scala/target/intel-consulting-scala-0.1-SNAPSHOT-allinone.jar ../bin/intel-bench-batch.jar
-#      update-alternatives --set java
   EOF
+  end
+  
+   bash "set_java8" do
+    user "root"
+     code <<-EOF 
+     update-alternatives --set java /usr/lib/jvm/java-8-oracle-amd64/bin/java
+     EOF
   end
 
 

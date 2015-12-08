@@ -6,7 +6,7 @@ description      'Installs/Configures/Runs streamingbenchmarks'
 version          "0.1"
 
 recipe            "streamingbenchmarks::install", "Experiment setup for streamingbenchmarks"
-recipe            "streamingbenchmarks::experiment",  "configFile=; Experiment name: experiment"
+recipe            "streamingbenchmarks::default",  "configFile=; Experiment name: experiment"
 
 
 depends "kagent"

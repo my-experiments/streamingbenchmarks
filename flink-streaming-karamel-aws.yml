@@ -8,28 +8,21 @@ cookbooks:
     github: "hopshadoop/apache-hadoop-chef"
   flink: 
     github: "hopshadoop/flink-chef"
+    branch: "java8"
   spark: 
     github: "hopshadoop/spark-chef"
   kzookeeper: 
     github: "hopshadoop/kzookeeper"
+    branch: "java8"
   kkafka: 
     github: "hopshadoop/kkafka"
+    branch: "java8"
   streamingbenchmarks:
     github: "jimdowling/streamingbenchmarks"
   java: 
     github: "jimdowling/java"
 
 attrs:
-  java:
-    jdk_version: "8"
-    install_flavor: oracle
-    oracle:
-      accept_oracle_download_terms: true
-    jdk:
-       "8":
-        "x86_64":
-           url: "http://snurran.sics.se/hops/jdk-8u65-linux-x64.tar.gz"
-           checksum: "196880a42c45ec9ab2f00868d69619c0"
   flink:
     mode: streaming
     jobmanager:

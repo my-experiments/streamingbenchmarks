@@ -12,7 +12,7 @@
 
 zk_ip = private_recipe_ip("kzookeeper", "default")
 kafka_ip = private_recipe_ip("kkafka", "default")
-
+spark_master = private_recipe_ip("spark", "master")
 
 template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   source "benchmark.properties.erb"
@@ -20,7 +20,8 @@ template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   group node[:streamingbenchmarks][:group]
   mode 0755
   variables({ :zk_ip => zk_ip,
-              :kafka_ip => kafka_ip
+              :kafka_ip => kafka_ip,
+              :spark_master => spark_master
   })
 end
 

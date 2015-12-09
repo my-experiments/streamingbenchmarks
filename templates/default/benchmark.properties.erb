@@ -8,6 +8,31 @@ numABGroups=<%= node[:streamingbenchmarks][:numABGroups] %>
 abFlinkOutTopic=flinkabout
 abSparkOutTopic=sparkabout
 tweetsFile=<%= node[:streamingbenchmarks][:home] %>/Test/data/tweets.txt
+numTweets=<%= node[:streamingbenchmarks][:numTweets] %>
+
 flinkTrendingTweetsOutDir=/tmp/<%= node[:streamingbenchmarks][:home] %>/Test
 sparkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
-numTweets=<%= node[:streamingbenchmarks][:numTweets] %>
+
+ABSparkMaster=<%= @spark_master %>
+TweetsSparkMaster=<%= @spark_master %>
+ABSparkCheckpointDir=/tmp/sparkCheckpoint
+
+#Batch
+sparkMaster=<%= @spark_master %>
+
+ALSInput=/tmp/flink-sparse-out
+ALSNumCustomers=10000
+ALSNumStores=1000
+ALSSparseness=.9
+
+ALSIterations=10
+ALSNumFactors=10
+ALSLambda=.9
+
+PearsonLeftInput=/tmp/flink-pearson-input1
+PearsonRightInput=/tmp/flink-pearson-input2
+PearsonLeftNum=10000
+PearsonRightNum=10000
+PearsonVectorLength=1000
+PearsonFlinkOutput=/tmp/flink-pearson-output
+PearsonSparkOutput=/tmp/spark-pearson-output

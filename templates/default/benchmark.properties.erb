@@ -8,6 +8,6 @@ numABGroups=<%= node[:streamingbenchmarks][:numABGroups] %>
 abFlinkOutTopic=flinkabout
 abSparkOutTopic=sparkabout
 tweetsFile=<%= node[:streamingbenchmarks][:home] %>/Test/data/tweets.txt
-flinkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
+flinkTrendingTweetsOutDir=/tmp/<%= node[:streamingbenchmarks][:home] %>/Test
 sparkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
 numTweets=<%= node[:streamingbenchmarks][:numTweets] %>

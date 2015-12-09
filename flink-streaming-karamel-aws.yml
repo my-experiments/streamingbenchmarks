@@ -23,7 +23,7 @@ cookbooks:
     github: "jimdowling/java"
 
 attrs:
-   java:
+  java:
     jdk_version: "8"
   flink:
     mode: streaming

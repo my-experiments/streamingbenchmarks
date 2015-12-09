@@ -16,7 +16,7 @@ Chef::Log.info "Building benchmark"
    bash "set_java8" do
     user "root"
      code <<-EOF 
-     update-alternatives --set java /usr/lib/jvm/java-8-oracle-amd64/bin/java
+#     update-alternatives --set java /usr/lib/jvm/java-8-oracle-amd64/bin/java
      EOF
   end
 

@@ -82,6 +82,7 @@ suites:
             taskmanager:
                private_ips: ["10.0.2.15"]
          spark:
+            user: "flink"
             master:
                private_ips: ["10.0.2.15"]
             worker:

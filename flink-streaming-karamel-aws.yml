@@ -29,6 +29,8 @@ attrs:
     mode: streaming
     jobmanager:
        heap_mbs: '1024'
+  spark:
+    user: "flink"
 
 groups:
   mgr:

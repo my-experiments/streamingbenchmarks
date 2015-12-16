@@ -30,23 +30,17 @@ streamingbenchmarks "tweets" do
   action :build
 end
 
-template "#{node[:streamingbenchmarks][:home]}/bin/streaming-generate.sh" do
-  source "streaming-generate.sh.erb"
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode 0755
+for d in %w[ streaming-generate.sh streaming-tweets.sh streaming-ab.sh spark-streaming-tweets.sh spark-streaming-ab.sh ]
+
+  template "#{node[:streamingbenchmarks][:home]}/bin/#{d}.sh" do
+    source "#{d}.erb"
+    owner node[:streamingbenchmarks][:user]
+    group node[:streamingbenchmarks][:group]
+    mode 0755
+    variables({ :zk_ip => zk_ip,
+              :kafka_ip => kafka_ip,
+              :spark_master => "spark://#{spark_master}:7077"
+    })
+  end
 end
 
-template "#{node[:streamingbenchmarks][:home]}/bin/streaming-tweets.sh" do
-  source "streaming-tweets.sh.erb"
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode 0755
-end
-
-template "#{node[:streamingbenchmarks][:home]}/bin/streaming-ab.sh" do
-  source "streaming-ab.sh.erb"
-  owner node[:streamingbenchmarks][:user]
-  group node[:streamingbenchmarks][:group]
-  mode 0755
-end

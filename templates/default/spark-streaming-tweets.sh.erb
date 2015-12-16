@@ -4,4 +4,4 @@
 export SPARK_HOME=/srv/spark
 . /srv/spark/bin/load-spark-env.sh
 cd <%= node[:streamingbenchmarks][:home] %>
-/srv/spark/bin/spark-submit --master <%= @master_ip %> --class hu.sztaki.mbalassi.intel.consulting.streaming.SparkTrendingTweets bin/intel-bench-streaming.jar conf/benchmark.properties
+/srv/spark/bin/spark-submit --master <%= @master_url %> --class hu.sztaki.mbalassi.intel.consulting.streaming.SparkTrendingTweets bin/intel-bench-streaming.jar conf/benchmark.properties

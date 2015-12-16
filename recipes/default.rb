@@ -39,7 +39,7 @@ for d in %w[ streaming-generate.sh streaming-tweets.sh streaming-ab.sh spark-str
     mode 0755
     variables({ :zk_ip => zk_ip,
               :kafka_ip => kafka_ip,
-              :spark_master => "spark://#{spark_master}:7077"
+              :spark_url => "spark://#{spark_master}:7077"
     })
   end
 end

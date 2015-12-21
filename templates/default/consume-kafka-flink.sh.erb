@@ -1,4 +1,4 @@
 #!/bin/bash
 
-/opt/kafka/kafka-console-consumer.sh --zookeeper <%= @zk_ip %>:2181 --topic flinkabout --from-beginning
+/opt/kafka/bin/kafka-console-consumer.sh --zookeeper <%= @zk_ip %>:2181 --topic flinkabout --from-beginning
 

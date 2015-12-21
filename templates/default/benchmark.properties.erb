@@ -15,7 +15,7 @@ sparkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
 
 ABSparkMaster=<%= @master_url %>
 TweetsSparkMaster=<%= @master_url %>
-ABSparkCheckpointDir=hdfs:///User/flink
+ABSparkCheckpointDir=<%= @hdfs_url %>
 
 #Batch
 sparkMaster=<%= @master_url %>

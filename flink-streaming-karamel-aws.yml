@@ -44,6 +44,7 @@ groups:
         - hadoop::nn
         - spark::master
         - flink::jobmanager
+        - flink::jobmanager-hadoop
         - streamingbenchmarks::default
         - kkafka::client
   workers:

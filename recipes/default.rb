@@ -13,6 +13,7 @@
 zk_ip = private_recipe_ip("kzookeeper", "default")
 kafka_ip = private_recipe_ip("kkafka", "default")
 spark_master = private_recipe_ip("spark", "master")
+nn_ip = private_recipe_ip("hadoop", "nn")
 
 template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   source "benchmark.properties.erb"
@@ -21,7 +22,8 @@ template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   mode 0755
   variables({ :zk_ip => zk_ip,
               :kafka_ip => kafka_ip,
-              :master_url => "spark://#{spark_master}:7077"              
+              :master_url => "spark://#{spark_master}:7077",
+              :hdfs_url => "hdfs://#{nn_ip}:8020/User/flink"
   })
 end
 

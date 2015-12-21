@@ -17,6 +17,8 @@ Chef::Log.info "Building benchmark"
     user "root"
      code <<-EOF 
 #     update-alternatives --set java /usr/lib/jvm/java-8-oracle-amd64/bin/java
+      mkdir /opt/kafka/logs
+      chown -R flink /opt/kafka/logs
      EOF
   end
 

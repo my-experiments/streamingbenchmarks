@@ -1,10 +1,9 @@
 #!/bin/bash
 
 cd <%= node[:streamingbenchmarks][:home] %>
+echo "Generating AB data..."
 java -cp bin/intel-bench-streaming.jar hu.sztaki.mbalassi.intel.consulting.streaming.KafkaABGenerator conf/benchmark.properties
-
-#java -cp src/intel-consulting-java/target/intel-consulting-java-0.1-SNAPSHOT-allinone.jar hu.sztaki.mbalassi.intel.consulting.streaming.KafkaABGenerator conf/benchmark.properties
-
+echo "Generating Tweets..."
 java -cp bin/intel-bench-streaming.jar hu.sztaki.mbalassi.intel.consulting.streaming.KafkaTweetGenerator conf/benchmark.properties
 
-#java -cp src/intel-consulting-scala/target/intel-consulting-scala-0.1-SNAPSHOT-allinone.jar hu.sztaki.mbalassi.intel.consulting.streaming.KafkaTweetGenerator conf/benchmark.properties
+echo "Finished generating data"

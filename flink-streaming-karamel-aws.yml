@@ -6,21 +6,25 @@ ec2:
 cookbooks:                                                                      
   hadoop: 
     github: "hopshadoop/apache-hadoop-chef"
+    branch: "master"
   flink: 
     github: "hopshadoop/flink-chef"
-    branch: "java8"
+    branch: "master"
   spark: 
     github: "hopshadoop/spark-chef"
+    branch: "master"
   kzookeeper: 
     github: "hopshadoop/kzookeeper"
-    branch: "java8"
+    branch: "master"
   kkafka: 
     github: "hopshadoop/kkafka"
-    branch: "java8"
+    branch: "master"
   streamingbenchmarks:
     github: "jimdowling/streamingbenchmarks"
+    branch: "master"
   java: 
     github: "jimdowling/java"
+    branch: "master"
 
 attrs:
   java:
@@ -35,15 +39,16 @@ attrs:
 groups:
   mgr:
     size: 1
-    recipes: 
-        - hadoop::nn
-        - flink::jobmanager
+    recipes:
+        - java    
         - spark::master
+        - flink::jobmanager
         - streamingbenchmarks::default
+        - kkafka::client
   workers:
     size: 2
-    recipes: 
-        - hadoop::dn
+    recipes:
+        - java
         - flink::taskmanager
         - spark::worker
         - kzookeeper

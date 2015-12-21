@@ -41,6 +41,7 @@ groups:
     size: 1
     recipes:
         - java    
+        - hadoop::nn
         - spark::master
         - flink::jobmanager
         - streamingbenchmarks::default
@@ -49,6 +50,7 @@ groups:
     size: 2
     recipes:
         - java
+        - hadoop::dn	
         - flink::taskmanager
         - spark::worker
         - kzookeeper

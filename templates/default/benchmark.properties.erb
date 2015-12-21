@@ -13,12 +13,12 @@ numTweets=<%= node[:streamingbenchmarks][:numTweets] %>
 flinkTrendingTweetsOutDir=/tmp/<%= node[:streamingbenchmarks][:home] %>/Test
 sparkTweetsOutDir=<%= node[:streamingbenchmarks][:home] %>/Test
 
-ABSparkMaster=<%= @spark_master %>
-TweetsSparkMaster=<%= @spark_master %>
+ABSparkMaster=<%= @master_url %>
+TweetsSparkMaster=<%= @master_url %>
 ABSparkCheckpointDir=/tmp/sparkCheckpoint
 
 #Batch
-sparkMaster=<%= @spark_master %>
+sparkMaster=<%= @master_url %>
 
 ALSInput=/tmp/flink-sparse-out
 ALSNumCustomers=10000

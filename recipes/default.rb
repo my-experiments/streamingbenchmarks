@@ -21,7 +21,7 @@ template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   mode 0755
   variables({ :zk_ip => zk_ip,
               :kafka_ip => kafka_ip,
-              :spark_master => spark_master
+              :master_url => "spark://#{spark_master}:7077"              
   })
 end
 

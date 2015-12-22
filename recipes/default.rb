@@ -33,7 +33,7 @@ streamingbenchmarks "createtopics" do
   action :build
 end
 
-for d in %w[ streaming-generate.sh streaming-tweets.sh streaming-ab.sh spark-streaming-tweets.sh spark-streaming-ab.sh consume-kafka-spark.sh consume-kafka-flink.sh ]
+for d in %w[ streaming-generate.sh streaming-tweets.sh streaming-ab.sh spark-streaming-tweets.sh spark-streaming-ab.sh consume-kafka-spark.sh consume-kafka-flink.sh create-kafka-topics.sh ]
 
   template "#{node[:streamingbenchmarks][:home]}/bin/#{d}" do
     source "#{d}.erb"

@@ -1,0 +1,63 @@
+name: FlinkStreamingZookeeperKafka
+ec2:
+    type: m3.large
+    region: eu-west-1
+    
+cookbooks:                                                                      
+  hadoop: 
+    github: "hopshadoop/apache-hadoop-chef"
+    branch: "master"
+  flink: 
+    github: "hopshadoop/flink-chef"
+    branch: "master"
+  spark: 
+    github: "hopshadoop/spark-chef"
+    branch: "master"
+  kzookeeper: 
+    github: "hopshadoop/kzookeeper"
+    branch: "master"
+  kkafka: 
+    github: "hopshadoop/kkafka"
+    branch: "master"
+  streamingbenchmarks:
+    github: "jimdowling/streamingbenchmarks"
+    branch: "master"
+  java: 
+    github: "jimdowling/java"
+    branch: "master"
+
+attrs:
+  java:
+    jdk_version: "8"
+  flink:
+    mode: streaming
+    jobmanager:
+       heap_mbs: '1024'
+  spark:
+    user: "flink"
+
+groups:
+  mgr:
+    size: 1
+    recipes:
+        - java    
+        - hadoop::nn
+        - spark::master
+        - flink::jobmanager
+        - flink::jobmanager-hadoop
+        - streamingbenchmarks::default
+        - kkafka::client
+  datanodes:
+    size: 1
+    recipes:
+        - java
+        - kzookeeper
+  workers:
+    size: 3
+    recipes:
+        - java
+        - hadoop::dn	
+        - flink::taskmanager
+        - spark::worker
+        - kkafka
+        - kkafka::monitor

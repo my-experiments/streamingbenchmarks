@@ -13,16 +13,16 @@ Chef::Log.info "Building benchmark"
      EOF
   end
 
-   zk_ip = "#{new_resource.zk_ip}"   
-   bash "create_topics" do
-    user "kafka"
-     code <<-EOF 
+  #  zk_ip = "#{new_resource.zk_ip}"   
+  #  bash "create_topics" do
+  #   user "kafka"
+  #    code <<-EOF 
 
-     /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasTweets]} --partition #{node[:streamingbenchmarks][:partitionsTweets]} --topic tweets
+  #    /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasTweets]} --partition #{node[:streamingbenchmarks][:partitionsTweets]} --topic tweets
 
-     /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasAB]} --partition #{node[:streamingbenchmarks][:partitionsAB]} --topic ab       
-     EOF
-  end
+  #    /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasAB]} --partition #{node[:streamingbenchmarks][:partitionsAB]} --topic ab       
+  #    EOF
+  # end
    
 
 end

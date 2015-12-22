@@ -1,4 +1,4 @@
-name: FlinkStreamingZookeeperKafka
+name: LargeFlinkStreamingZookeeperKafka
 ec2:
     type: m3.large
     region: eu-west-1

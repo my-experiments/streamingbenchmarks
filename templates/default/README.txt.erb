@@ -1,0 +1,19 @@
+
+###
+
+Run in this order:
+
+cd /srv/intel_streamingbenchmark
+
+./bin/create-kafka-spark.sh
+./bin/streaming-generate.sh
+
+# Flink streaming
+./bin/streaming-tweets.sh
+./bin/streaming-ab.sh
+
+
+# Spark streaming
+./bin/spark-streaming-tweets.sh
+./bin/spark-streaming-ab.sh
+

@@ -47,3 +47,10 @@ for d in %w[ streaming-generate.sh streaming-tweets.sh streaming-ab.sh spark-str
   end
 end
 
+  template "#{node[:streamingbenchmarks][:home]}/README.txt" do
+    source "README.txt.erb"
+    owner node[:streamingbenchmarks][:user]
+    group node[:streamingbenchmarks][:group]
+    mode 0755
+  end
+

@@ -2,12 +2,14 @@ action :build do
 
 Chef::Log.info "Building benchmark"
 
+#     update-alternatives --set java /usr/lib/jvm/java-8-oracle-amd64/bin/java
+
    bash "set_java8" do
     user "root"
      code <<-EOF 
-#     update-alternatives --set java /usr/lib/jvm/java-8-oracle-amd64/bin/java
       mkdir /opt/kafka/logs
-      chown -R flink /opt/kafka/logs
+      chown -R kafka /opt/kafka/logs
+      chmod -R 777 /opt/kafka/logs
      EOF
   end
 
@@ -16,9 +18,9 @@ Chef::Log.info "Building benchmark"
     user "kafka"
      code <<-EOF 
 
-     #{node[:kafka][:install_dir]}/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasTweets]} --partition #{node[:streamingbenchmarks][:partitionsTweets]} --topic tweets
+     /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasTweets]} --partition #{node[:streamingbenchmarks][:partitionsTweets]} --topic tweets
 
-     #{node[:kafka][:install_dir]}/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasAB]} --partition #{node[:streamingbenchmarks][:partitionsAB]} --topic ab       
+     /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasAB]} --partition #{node[:streamingbenchmarks][:partitionsAB]} --topic ab       
      EOF
   end
    

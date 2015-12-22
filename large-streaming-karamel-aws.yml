@@ -47,17 +47,17 @@ groups:
         - flink::jobmanager-hadoop
         - streamingbenchmarks::default
         - kkafka::client
-  datanodes:
-    size: 1
+  kafka:
+    size: 3
     recipes:
         - java
+        - kkafka::monitor
+        - kkafka
         - kzookeeper
-  workers:
-    size: 3
+  processors:
+    size: 2
     recipes:
         - java
         - hadoop::dn	
         - flink::taskmanager
         - spark::worker
-        - kkafka
-        - kkafka::monitor

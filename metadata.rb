@@ -42,3 +42,19 @@ attribute "streamingbenchmarks/numABGroups",
 attribute "streamingbenchmarks/numTweets",
 :description => "Number of Tweets (streaming experiment)",
 :type => "string"
+
+attribute "streamingbenchmarks/partitionsTweets",
+:description => "Number of Partitions for Tweets topic",
+:type => "string"
+
+attribute "streamingbenchmarks/replicasTweets",
+:description => "Number of Replicas for the Tweets topic",
+:type => "string"
+
+attribute "streamingbenchmarks/partitionsAB",
+:description => "Number of Partitions for AB topic",
+:type => "string"
+
+attribute "streamingbenchmarks/replicasAB",
+:description => "Number of Replicas for the Tweets topic",
+:type => "string"

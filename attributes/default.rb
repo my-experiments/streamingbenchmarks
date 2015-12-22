@@ -10,3 +10,10 @@ default[:streamingbenchmarks][:home] = node[:streamingbenchmarks][:dir] + "/inte
 default[:streamingbenchmarks][:numABRecords] = "10000000" 
 default[:streamingbenchmarks][:numABGroups] = "5"
 default[:streamingbenchmarks][:numTweets] = "25000000"
+
+default[:streamingbenchmarks][:replicasTweets]   = "1"
+default[:streamingbenchmarks][:partitionsTweets] = "1"
+
+default[:streamingbenchmarks][:partitionsAB]     = "1"
+default[:streamingbenchmarks][:replicasAB]       = "1"
+

@@ -28,7 +28,8 @@ template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
 end
 
 
-streamingbenchmarks "tweets" do
+streamingbenchmarks "createtopics" do
+  zk_ip zk_ip
   action :build
 end
 

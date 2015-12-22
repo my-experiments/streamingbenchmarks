@@ -2,17 +2,6 @@ action :build do
 
 Chef::Log.info "Building benchmark"
 
-  # bash "building_intel_benchmarks" do
-  #   user node['streamingbenchmarks']['user']
-  #   group node['streamingbenchmarks']['group']
-  #    code <<-EOF 
-  #     cd #{node[:streamingbenchmarks][:home]}/src
-  #     mvn clean package
-  #     cp intel-consulting-java/target/intel-consulting-java-0.1-SNAPSHOT-allinone.jar ../bin/intel-bench-streaming.jar
-  #     cp intel-consulting-scala/target/intel-consulting-scala-0.1-SNAPSHOT-allinone.jar ../bin/intel-bench-batch.jar
-  # EOF
-  # end
-  
    bash "set_java8" do
     user "root"
      code <<-EOF 
@@ -22,6 +11,17 @@ Chef::Log.info "Building benchmark"
      EOF
   end
 
+   zk_ip = "#{new_resource.zk_ip}"   
+   bash "create_topics" do
+    user "kafka"
+     code <<-EOF 
+
+     #{node[:kafka][:install_dir]}/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasTweets]} --partition #{node[:streamingbenchmarks][:partitionsTweets]} --topic tweets
+
+     #{node[:kafka][:install_dir]}/bin/kafka-create-topic.sh --zookeeper #{zk_ip}:2181 --replica #{node[:streamingbenchmarks][:replicasAB]} --partition #{node[:streamingbenchmarks][:partitionsAB]} --topic ab       
+     EOF
+  end
+   
 
 end
 
@@ -92,6 +92,8 @@ end
 action :batch do
 
 Chef::Log.info "Running batch terasort benchmark"
+
+# /opt/kafka/bin/kafka-create-topic.sh --zookeeper #{zk_ips}:2181 --replica 1 --partition 1 --topic test
 
   bash "run_batch_intel_benchmarks" do
     user node['streamingbenchmarks']['user']

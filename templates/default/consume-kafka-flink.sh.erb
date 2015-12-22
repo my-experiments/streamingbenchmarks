@@ -1,4 +1,9 @@
 #!/bin/bash
 
-/opt/kafka/bin/kafka-console-consumer.sh --zookeeper <%= @zk_ip %>:2181 --topic flinkabout --from-beginning
+RES=<%= node[:streamingbenchmarks][:home] %>/flink-streaming-results.out
+
+nohup /opt/kafka/bin/kafka-console-consumer.sh --zookeeper <%= @zk_ip %>:2181 --topic flinkabout --from-beginning > $RES &
+
+echo "Writing in the background flink latencies to: $RES"
+
 

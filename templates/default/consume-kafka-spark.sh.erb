@@ -1,3 +1,9 @@
 #!/bin/bash
 
-/opt/kafka/bin/kafka-console-consumer.sh --zookeeper <%= @zk_ip %>:2181 --topic sparkabout --from-beginning
+RES=<%= node[:streamingbenchmarks][:home] %>/spark-streaming-results.out
+
+nohup /opt/kafka/bin/kafka-console-consumer.sh --zookeeper <%= @zk_ip %>:2181 --topic sparkabout --from-beginning > $RES &
+
+echo "Writing in the background spark latencies to: $RES"
+
+

@@ -1,19 +1,29 @@
 
 ###
 
-Run in this order:
+To run the experiments, execute the bash scripts in the following order:
 
 cd /srv/intel_streamingbenchmark
 
+# Create the 'tweets' and 'AB' topics in Kafka
 ./bin/create-kafka-spark.sh
+
+# Generate the input data for the streaming experiments
 ./bin/streaming-generate.sh
 
-# Flink streaming
+# In the backgroud, start kafka clients that read the kafka latencies from the output Spark and Flink topics and write the latencies to an output file for each of Spark and Flink
+./bin/consume-kafka-flink.sh
+./bin/consume-kafka-spark.sh
+
+
+# Flink streaming experiments
 ./bin/streaming-tweets.sh
 ./bin/streaming-ab.sh
 
 
-# Spark streaming
+# Spark streaming experiments
 ./bin/spark-streaming-tweets.sh
 ./bin/spark-streaming-ab.sh
 
+
+# Process the output files name *-flink.out and *-spark.out

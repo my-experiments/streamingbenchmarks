@@ -50,7 +50,6 @@ suites:
       - recipe[spark::worker]
       - recipe[kkafka::monitor]
       - recipe[streamingbenchmarks]
-      - recipe[streamingbenchmarks::consume]
     attributes:
          java:
             jdk_version: 8

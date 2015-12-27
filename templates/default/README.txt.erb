@@ -1,5 +1,5 @@
 
-###
+### STREAMING EXPERIMENTS
 
 To run the experiments, execute the bash scripts in the following order:
 
@@ -27,3 +27,26 @@ cd /srv/intel_streamingbenchmark
 
 
 # Process the output files name *-flink.out and *-spark.out
+
+
+### BATCH EXPERIMENTS
+
+# You will need to stop flink jobmanager that is running in streaming mode by default. Then restart it in batch mode.
+
+cd /srv/flink
+./bin/cluster-stop.sh
+./bin/cluster-start.sh
+
+
+# Generate the input data for the batch experiments
+cd /srv/intel_streamingbenchmark
+./bin/batch-generate.sh
+
+# Run the flink the batch experiments
+./bin/batch-als.sh
+./bin/batch-pearson.sh
+
+
+# Run the flink the spark experiments
+./bin/spark-batch-als.sh
+./bin/spark-batch-pearson.sh

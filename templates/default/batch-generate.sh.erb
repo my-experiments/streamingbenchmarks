@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd <%= node[:streamingbenchmarks][:home] %>
+echo "Generating sparse matrix data..."
+java -cp bin/intel-bench-batch.jar hu.sztaki.mbalassi.intel.consulting.als.generator.RandomSparseMatrixGen conf/benchmark.properties
+echo "Generating Pearson data ..."
+java -cp bin/intel-bench-batch.jar hu.sztaki.mbalassi.intel.consulting.pearson.generator.PearsonDataGen conf/benchmark.properties
+
+echo "Finished generating batch data"

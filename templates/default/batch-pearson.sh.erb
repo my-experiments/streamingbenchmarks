@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd <%= node[:streamingbenchmarks][:home] %>
+
+/srv/flink/bin/flink run -c hu.sztaki.mbalassi.intel.consulting.pearson.flink.FlinkPearson bin/intel-bench-batch.jar conf/benchmark.properties

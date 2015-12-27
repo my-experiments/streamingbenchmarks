@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export SPARK_HOME=/srv/spark
+. /srv/spark/bin/load-spark-env.sh
+cd <%= node[:streamingbenchmarks][:home] %>
+/srv/spark/bin/spark-submit --master <%= @master_url %> --class hu.sztaki.mbalassi.intel.consulting.als.spark.SparkALS bin/intel-bench-batch.jar conf/benchmark.properties

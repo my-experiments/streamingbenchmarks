@@ -16,21 +16,6 @@ end
 private_ip = my_private_ip()
 public_ip = my_public_ip()
 
-
-# package "git" do 
-#   action :install
-# end
-
-# package "maven" do 
-#   action :install
-# end
-
-
-# Pre-Experiment Code
-
-
-# Configuration Files
-
 directory "#{node[:streamingbenchmarks][:home]}" do
   owner node[:streamingbenchmarks][:user]
   group node[:streamingbenchmarks][:group]
@@ -67,25 +52,14 @@ remote_file "/tmp/#{bench}"  do
   action :create
 end
 
-# remote_file "/tmp/#{bench_src}"  do
-#   source "http://snurran.sics.se/hops/#{bench_src}"
-#   mode 0755
-#   action :create
-# end
-
-
 bash "unpack_intel_benchmarks" do
   user "root"
     code <<-EOF
-set -e
-cd /tmp
-
-# tar -xf #{bench_src} -C #{node[:streamingbenchmarks][:home]}/src   
+  set -e
+  cd /tmp
   tar -xf #{bench} -C #{node[:streamingbenchmarks][:home]}/bin
   touch #{node[:streamingbenchmarks][:home]}/.benchmarks_downloaded
   chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}
-#    chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/src   
-#    chown -R #{node['streamingbenchmarks']['user']} #{node[:streamingbenchmarks][:home]}/bin
 EOF
   not_if { ::File.exists?( "#{node[:streamingbenchmarks][:home]}/.benchmarks_downloaded" ) }
 end

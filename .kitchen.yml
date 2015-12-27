@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   customize:
-    memory: 6000
+    memory: 12000
     cpuexecutioncap: 90
     cpus: 2
     natdnshostresolver1: "on"
@@ -80,12 +80,14 @@ suites:
                web_port: 8089
             taskmanager:
                private_ips: ["10.0.2.15"]
+               heap_mbs: 3000
          spark:
             user: "flink"
             master:
                private_ips: ["10.0.2.15"]
             worker:
                private_ips: ["10.0.2.15"]
+            executor_memory: 1500m
          hdfs:
             user: hdfs
          hadoop:

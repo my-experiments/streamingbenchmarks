@@ -34,9 +34,10 @@ cd /srv/intel_streamingbenchmark
 # You will need to stop flink jobmanager that is running in streaming mode by default. Then restart it in batch mode.
 
 cd /srv/flink
-./bin/cluster-stop.sh
-./bin/cluster-start.sh
+./bin/stop-cluster.sh
+./bin/start-cluster.sh
 
+# To later start the flink cluster in 'streaming' mode, run ./bin/start-cluster-streaming.sh
 
 # Generate the input data for the batch experiments
 cd /srv/intel_streamingbenchmark

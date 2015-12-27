@@ -32,10 +32,13 @@ attrs:
   flink:
     mode: streaming
     jobmanager:
+       heap_mbs: '512'
+    taskmanager:
        heap_mbs: '1024'
   spark:
     user: "flink"
-
+    executor_memory: '1024m'
+    
 groups:
   mgr:
     size: 1

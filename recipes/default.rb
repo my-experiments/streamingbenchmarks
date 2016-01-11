@@ -6,7 +6,7 @@
 #   group node['streamingbenchmarks']['group']
 #   interpreter "bash"
 #   code <<-EOM
-# java -cp intel-consulting-scala/target/intel-consulting-scala-0.1-SNAPSHOT-allinone.jar hu.sztaki.mbalassi.intel.consulting.als.generator.RandomSparseMatrixGen --numStores #{node.streamingbenchmarks.numStores} --numCustomers #{node.streamingbenchmarks.Customers} --output hdfs://#{node.hadoop.nn.private_ips[0]}:8020/User/flink
+# java -cp intel-consulting-scala/target/intel-consulting-scala-0.1-SNAPSHOT-allinone.jar hu.sztaki.mbalassi.intel.consulting.als.generator.RandomSparseMatrixGen --numStores #{node.streamingbenchmarks.numStores} --numCustomers #{node.streamingbenchmarks.Customers} --output hdfs://#{node.hadoop.nn.private_ips[0]}:8020/user/flink
 #   EOM
 # end
 
@@ -23,7 +23,7 @@ template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   variables({ :zk_ip => zk_ip,
               :kafka_ip => kafka_ip,
               :master_url => "spark://#{spark_master}:7077",
-              :hdfs_url => "hdfs://#{nn_ip}:8020/User/flink"
+              :hdfs_url => "hdfs://#{nn_ip}:8020/user/flink"
   })
 end
 

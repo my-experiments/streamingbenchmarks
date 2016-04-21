@@ -3,7 +3,7 @@ dependencies:
   - recipe: streamingbenchmarks::default
     global:
       - flink::taskmanager
-      - spark::master
+      - hadoop_spark::master
       - kkafka::default
       - kkafka::monitor
 

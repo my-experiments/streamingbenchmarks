@@ -12,8 +12,8 @@
 
 zk_ip = private_recipe_ip("kzookeeper", "default")
 kafka_ip = private_recipe_ip("kkafka", "default")
-spark_master = private_recipe_ip("spark", "master")
-nn_ip = private_recipe_ip("hadoop", "nn")
+spark_master = private_recipe_ip("hadoop_spark", "master")
+nn_ip = private_recipe_ip("apache_hadoop", "nn")
 
 template "#{node[:streamingbenchmarks][:home]}/conf/benchmark.properties" do
   source "benchmark.properties.erb"

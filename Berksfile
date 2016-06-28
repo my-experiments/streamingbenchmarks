@@ -14,3 +14,4 @@ cookbook 'hadoop_spark', github: 'my-experiments/spark-chef', branch: 'master'
 cookbook 'apache_hadoop', github: 'my-experiments/apache-hadoop-chef', branch: 'master'
 
 cookbook 'java', github: 'my-experiments/java'
+cookbook 'apt', '~> 2.6.0'
